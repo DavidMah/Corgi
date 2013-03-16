@@ -8,6 +8,7 @@
 #define CORGI_HEIGHT 23
 #define SPRITE_COUNT 16
 #define CORGI_SPEED 3
+#define FRAME_WAIT 40000 // microseconds
 
 int maxx;
 int maxy;
@@ -15,8 +16,8 @@ int maxy;
 int x;
 int y;
 char** data;
+int current_index;
 
-int current_index = 0;
 
 void initialize_corgis();
 void draw_corgi(int index);
@@ -29,7 +30,6 @@ int update() {
 
   current_index++;
   current_index = current_index % SPRITE_COUNT;
-  /* y++;*/
 }
 
 void draw_corgi(int index) {
@@ -45,11 +45,10 @@ void draw_corgi(int index) {
       }
     }
   }
-
 }
 
 int main() {
-  // TODO: Trap Signals
+  // Trap Signals
   signal(SIGINT, SIG_IGN);
   signal(SIGTERM, SIG_IGN);
   signal(SIGABRT, SIG_IGN);
@@ -57,25 +56,20 @@ int main() {
   data = malloc(sizeof(char*) * CORGI_HEIGHT * SPRITE_COUNT * CORGI_WIDTH);
   initialize_corgis();
 
+
   // Set up Screen
   WINDOW* window = initscr();
   noecho();
-
   getmaxyx(window, maxy, maxx);
 
   // Initialize X and Y
   x = -CORGI_WIDTH;
   y = (maxy / 2) - (CORGI_HEIGHT / 2);
-
-  char* message;
-  asprintf(&message, "%d %d", maxx, maxy);
-  // TODO Free
-
-  /* printw(data[0]);*/
+  current_index = 0;
 
   while (x < maxx) {
     update();
-    usleep(40000);
+    usleep(FRAME_WAIT);
   }
   endwin();
 }
