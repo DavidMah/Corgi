@@ -13,4 +13,4 @@ popd
 
 sudo rm -rf _corgi_temp
 
-
+echo -e "\033[32mInstall Complete!\nRun \`corgi\` in the command line!\033[0m"
