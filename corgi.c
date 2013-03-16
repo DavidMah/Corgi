@@ -50,10 +50,10 @@ void draw_corgi(int index) {
 
 int main() {
   // TODO: Trap Signals
-  /* signal(SIGINT, SIG_IGN);*/
-  /* signal(SIGTERM, SIG_IGN);*/
-  /* signal(SIGABRT, SIG_IGN);*/
-  /* signal(SIGTSTP, SIG_IGN);*/
+  signal(SIGINT, SIG_IGN);
+  signal(SIGTERM, SIG_IGN);
+  signal(SIGABRT, SIG_IGN);
+  signal(SIGTSTP, SIG_IGN);
   data = malloc(sizeof(char*) * CORGI_HEIGHT * SPRITE_COUNT * CORGI_WIDTH);
   initialize_corgis();
 
