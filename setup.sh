@@ -10,6 +10,7 @@ curl https://raw.github.com/DavidMah/Corgi/master/corgi.c -o corgi.c
 sudo make install
 
 popd
-rm -rf _corgi_temp
+
+sudo rm -rf _corgi_temp
 
 
